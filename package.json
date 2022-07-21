@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc src/app.ts -w & pm2 start dist/app.js --watch"
+    "build": "tsc && pm2 start ./dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
-    
+
     "ts-node": "^10.9.1"
   },
   "devDependencies": {

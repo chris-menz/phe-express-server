@@ -6,7 +6,7 @@ const app: Express = express()
 
 app.use(cookieParser())
 app.use(express.json())
-app.use(cookieParser)
+app.use(cors())
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Welcome to the PHE Express Dev Server!!!")

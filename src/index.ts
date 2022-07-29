@@ -2,6 +2,9 @@ import express, { Express, Request, Response } from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
+// import CandidateRoute from "./modules/candidate/candidate.route"
+import { connectToMongo, disconnectFromMongo } from "./database/mongodb"
+
 const app: Express = express()
 
 app.use(cookieParser())
@@ -12,20 +15,25 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Welcome to the PHE Express Dev Server!!!")
 })
 
-const server = app.listen(3001, () => {
+// app.use("/candidate", CandidateRoute)
+
+const server = app.listen(3001, async () => {
+    await connectToMongo()
     console.log("Express running on port 3001")
 })
 
-process.on("SIGINT", () => {
+process.on("SIGINT", async () => {
     server.close(() => {
         console.log("Server shutting down")
+        disconnectFromMongo()
         process.exit(0)
     })
 })
 
-process.on("SIGTERM", () => {
+process.on("SIGTERM", async () => {
     server.close(() => {
         console.log("Server shutting down")
+        disconnectFromMongo()
         process.exit(0)
     })
 })

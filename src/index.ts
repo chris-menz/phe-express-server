@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
-// import CandidateRoute from "./modules/candidate/candidate.route"
+import CandidateRoute from "./modules/candidate/candidate.route"
 import { connectToMongo, disconnectFromMongo } from "./database/mongodb"
 
 const app: Express = express()
@@ -15,7 +15,7 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Welcome to the PHE Express Dev Server!!!")
 })
 
-// app.use("/candidate", CandidateRoute)
+app.use("/candidate", CandidateRoute)
 
 const server = app.listen(3001, async () => {
     await connectToMongo()

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
-// import CandidateRoute from "./modules/candidate/candidate.route"
+const candidate_route_1 = __importDefault(require("./modules/candidate/candidate.route"));
 const mongodb_1 = require("./database/mongodb");
 const app = (0, express_1.default)();
 app.use((0, cookie_parser_1.default)());
@@ -24,7 +24,7 @@ app.use((0, cors_1.default)());
 app.get("/", (req, res) => {
     res.send("Welcome to the PHE Express Dev Server!!!");
 });
-// app.use("/candidate", CandidateRoute)
+app.use("/candidate", candidate_route_1.default);
 const server = app.listen(3001, () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, mongodb_1.connectToMongo)();
     console.log("Express running on port 3001");

@@ -11,9 +11,9 @@ export class EmployerModel {
     public bio: String
 
     @prop({required: true})
-    public bio: string
+    public location: string
 
     @prop({required: true})
-    public 
+    public skills: String
 
 }

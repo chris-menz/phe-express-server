@@ -4,12 +4,13 @@ const mongoConnString = "mongodb+srv://phe-dev-db:phe-dev-db-pw@phe-dev-cluster.
 
 export async function connectToMongo(){
     try {
-        await mongoose.connect(mongoConnString)
+        var connection = await mongoose.connect(mongoConnString)
         console.log("Successfully connected to Dev DB")
+        return connection;
     } catch (e) {
         console.log(e)
         console.log("failed to connect")
-        process.exit(1)
+        process.exit(1);
     }
 }
 
